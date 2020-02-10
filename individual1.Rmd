@@ -1,0 +1,22 @@
+---
+title: "individual1"
+output: html_document
+author: "Jaydon Cobb, github: JaydonLCobb"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+head(choco)
+hist(choco$Rating, main = "Distribution of Ratings", xlab = "Ratings")
+```
+# 1) The majority of the ratings full between rating two and rating four, hence the frequencies of ratings in that interval being far higher than the others. 
+# There are outlier(s) on the interval between ratings 4.5 and 5.
+
+```{r}
+plot(choco$Cocoa.Pct,choco$Rating,main = "Rating vs. Cocoa %", xlab= "Cocoa %", ylab = "Rating")
+```
+# 2
+# It appears that the majority of chocolate that contain a cocoa percentage between 60 and 90 have the most ratings over 3. So I would say there is a correlation that states chocolate with a cocoa percentage in between 60 and 90 have a better chance of recieving a higher rating.
