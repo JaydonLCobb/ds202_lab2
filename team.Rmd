@@ -13,10 +13,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1.) What is the overall number of chocolate bars rated?
 
-nice, dude 
+```{r}
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+nrow(choco)
+```
+## There are 1852 chocolate bars rated.
 
 2.) How does the number of ratings depend on the year? Draw a bar chart of the number of reports.
-
+```{r}
+library(ggplot2)
+ggplot(choco, aes(x=Review.Date, y=Rating)) + geom_bar(stat="identity") + 
+  labs(x="Review Date", y="Rating")
+```
+## The number of ratings increases almost in linear fashion until the year 2015 and then drops rapidly into the middle of 2017
 
 3.) Which are the three locations with the most ratings? How do ratings compare across these company locations?
 
