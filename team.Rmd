@@ -20,7 +20,7 @@ head(choco);
 
 ```{r}
 choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
-nrow(choco)
+nrow(choco) #sums all of the rows in choco data set. 
 ```
 ## There are 1852 chocolate bars rated.
 
@@ -28,7 +28,7 @@ nrow(choco)
 <<<<<<< HEAD
 
 =======
->>>>>>> 131ecf2e869c6e4938df86cf1fb2f27eec820fa4
+
 ```{r}
 library(ggplot2)
 ggplot(choco, aes(x=Review.Date, y=Rating)) + geom_bar(stat="identity") + 
@@ -44,15 +44,28 @@ The locations with the most ratings are USA(787), France(158), and Canada(132).
 
 ```{r}
 library(plyr)
-freq <- count(choco, "Company.Location")
+# sum of the frequency of each location
+freq <- count(choco, "Company.Location") 
 print(freq)
 # Canada = 132, France = 158, USA = 787
 
-```
+# sum the rows that have the value of Canada in the Company.Location column.
+canada = subset(choco, Company.Location == "Canada")
+# average the values of the ratings from the corresponding country. 
+average_rating_canada = mean(canada$Rating, na.rm=TRUE)
+france = subset(choco, Company.Location == "France")
+average_rating_france = mean(france$Rating, na.rm=TRUE)
+usa = subset(choco, Company.Location == "U.S.A.")
+average_rating_USA = mean(usa$Rating, na.rm=TRUE)
 
+print(average_rating_canada) # AVG. Canada Rating
+print(average_rating_france) # AVG. France Rating
+print(average_rating_USA) # AVG. USA Rating
+```
+#From when we look at the averages of the three countries with the largest number of ratings, we see that France has the largest average rating amongst all of their chocolates, then USA, and last Canada. 
 4.) Brainstorm and write down an interesting question that can be answer from the dataset. The question should not duplicate the questions above.
 
-What is the average rating amongst all rated chocolate bars?
+What is the average rating amongst all rated chocolate bars? How does this compare to the Average of the countries with the top 3 most ratings from above? What does this mean?
 
 5.) Answer the question from the dataset.
 
@@ -61,6 +74,7 @@ average_rating = mean(choco$Rating, na.rm=TRUE)
 # gets the average of the ratings column. If value equals null, then it is removed from the calculation. 
 print(average_rating)
 ```
+# The average of all the chocolate bar ratings is 3.19. This is below the average rating of French chocolate. This means that On average, the French chocolate is rated above average when using all the ratings as a a whole population. 
 
 6.) Write one paragraph commenting on the workflow.
 
