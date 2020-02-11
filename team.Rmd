@@ -11,17 +11,54 @@ git push
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+head(choco);
+```
+
 1.) What is the overall number of chocolate bars rated?
 
-nice, dude 
+```{r}
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+nrow(choco)
+```
+## There are 1852 chocolate bars rated.
 
 2.) How does the number of ratings depend on the year? Draw a bar chart of the number of reports.
 
+```{r}
+library(ggplot2)
+ggplot(choco, aes(x=Review.Date, y=Rating)) + geom_bar(stat="identity") + 
+  labs(x="Review Date", y="Rating")
+```
+## The number of ratings increases almost in linear fashion until the year 2015 and then drops rapidly into the middle of 2017
 
+
+
+## Still need to finish NUMBER 3
 3.) Which are the three locations with the most ratings? How do ratings compare across these company locations?
+The locations with the most ratings are USA(787), France(158), and Canada(132).
+
+```{r}
+library(plyr)
+freq <- count(choco, "Company.Location")
+print(freq)
+# Canada = 132, France = 158, USA = 787
+
+```
 
 4.) Brainstorm and write down an interesting question that can be answer from the dataset. The question should not duplicate the questions above.
 
+What is the average rating amongst all rated chocolate bars?
+
 5.) Answer the question from the dataset.
 
+```{r}
+average_rating = mean(choco$Rating, na.rm=TRUE)
+# gets the average of the ratings column. If value equals null, then it is removed from the calculation. 
+print(average_rating)
+```
+
 6.) Write one paragraph commenting on the workflow.
+
+The workflow of this project consisted of communication between the two users that are using the cloned common repository. In our case, Jaydon worked on a certain set of questions and then pushed them to the repository. Then I pulled his changes and then finished the unfinished problems on my computer. When I finished the assignment I pushed it back onto the cloned repository and Jaydon pulled the finished assignment to check the overall work. 
