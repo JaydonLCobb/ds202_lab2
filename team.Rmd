@@ -25,7 +25,10 @@ nrow(choco)
 ## There are 1852 chocolate bars rated.
 
 2.) How does the number of ratings depend on the year? Draw a bar chart of the number of reports.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 131ecf2e869c6e4938df86cf1fb2f27eec820fa4
 ```{r}
 library(ggplot2)
 ggplot(choco, aes(x=Review.Date, y=Rating)) + geom_bar(stat="identity") + 
